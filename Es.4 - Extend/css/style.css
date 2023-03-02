@@ -6,11 +6,19 @@
   margin: 1rem;
   text-align: center;
 }
-.container h1 {
+.container .title, .container .title_subtitle {
   text-decoration: underline blue;
   color: green;
 }
-.container section:nth-child(2) {
+.container .title_subtitle {
+  padding: 1rem;
+  border: 1px solid red;
+  width: fit-content;
+  margin: auto;
+  margin-bottom: 2rem;
+  text-decoration: none;
+}
+.container section:nth-child(3) {
   display: flex;
 }
 .container article {

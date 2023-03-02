@@ -18,11 +18,20 @@ $footer-color: root.$footer-color;
     @include border-styling(black, red);
     margin: converter.converter(16);
     text-align: center;
-    h1 {
+    & .title {
         text-decoration: underline $h1-decoration-color;
         color: $h1-color;
+        &_subtitle {
+            @extend .title;
+            padding: converter.converter(16);
+            border: 1px solid red;
+            width: fit-content;
+            margin: auto;
+            margin-bottom: converter.converter(32);
+            text-decoration: none;
+        }
     }
-    section:nth-child(2) {
+    section:nth-child(3) {
         display: flex;
     }
     article {
