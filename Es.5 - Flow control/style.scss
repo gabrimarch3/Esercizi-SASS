@@ -1,0 +1,80 @@
+@use './root.scss';
+@use './converter.scss';
+
+$h1-color: root.$h1-color;
+$h1-decoration-color: root.$h1-decoration-color;
+$odd-article-color: root.$odd-article-color;
+$even-article-color: root.$even-article-color;
+$footer-color: root.$footer-color;
+
+@mixin border-styling($color, $border-color, $font-size: 1rem){
+    color: $color;
+    border: converter.converter(2) solid $border-color;
+    font-size: $font-size;
+    padding: converter.converter(16);
+}
+
+.container {
+    @include border-styling(black, red);
+    margin: converter.converter(16);
+    text-align: center;
+    & .title {
+        text-decoration: underline $h1-decoration-color;
+        color: $h1-color;
+        &_subtitle {
+            @extend .title;
+            padding: converter.converter(16);
+            border: 1px solid red;
+            width: fit-content;
+            margin: auto;
+            margin-bottom: converter.converter(32);
+            text-decoration: none;
+        }
+    }
+    section:nth-child(3) {
+        display: flex;
+    }
+    article {
+        @include border-styling(black, green);
+        &:nth-child(odd) {
+            color: $odd-article-color;
+        }
+        &:nth-child(even) {
+            color: $even-article-color;
+        }
+    }
+    .container-footer {
+        @include border-styling($footer-color, blue, converter.converter(24));
+        margin-top: converter.converter(15);
+    }
+    .square-order {
+        display: flex;
+        justify-content: space-between;
+        margin-top: converter.converter(10);
+    }
+}
+
+@for $index from 1 through 20 {
+    .square-order div:nth-child(#{$index}) {
+        height: converter.converter(45);
+        width: converter.converter(45);
+        border: converter.converter(2) solid red;
+        $square-bg: white;
+        $square-color: black;
+        background-color: darken($square-bg, $index * 5%);
+        color: lighten($square-color, $index * 5%);
+        text-align: start;
+    }
+    @if $index == 10 {
+        .square-order div:nth-child(#{$index}) {
+            background-color: blue;
+            color: red;
+        }
+    }
+}
+
+@each $key, $value in (1rem: 1rem, 2rem: 2rem, 3rem: 3rem) {
+    .fs-#{$key} {
+        font-size: $value;
+    }
+}
